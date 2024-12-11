@@ -1,0 +1,18 @@
+{
+  "name": "aots-2023",
+  "private": true,
+  "author": "erhant",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "check": "bunx tsc --noEmit && echo \"All solutions are correct.\""
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "type-testing": "^0.2.0",
+    "typescript": "^5.0.0"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}
