@@ -1,14 +1,26 @@
-import { Expect, Equal } from "type-testing";
-import { FilterChildrenBy } from "~/06";
+import type { Expect, Equal } from "type-testing";
+import { createRoute } from "~/06";
 
-type test_0_actual = FilterChildrenBy<"nice" | "nice" | "nice", "naughty">;
-type test_0_expected = "nice";
-type test_0 = Expect<Equal<test_0_expected, test_0_actual>>;
+const oneMill = createRoute("🌩️Donner", 100_000_000);
+type t0_actual = typeof oneMill; // =>
+type t0_expected = 100_000_000; // =>
+type t0 = Expect<Equal<t0_actual, t0_expected>>;
 
-type test_1_actual = FilterChildrenBy<"nice" | "naughty" | "naughty", "naughty">;
-type test_1_expected = "nice";
-type test_1 = Expect<Equal<test_1_expected, test_1_actual>>;
+const two = createRoute("🔴Rudolph", 2);
+type t1_actual = typeof two; // =>
+type t1_expected = 2; // =>
+type t1 = Expect<Equal<t1_actual, t1_expected>>;
 
-type test_2_actual = FilterChildrenBy<string | number | (() => void), Function>;
-type test_2_expected = string | number;
-type test_2 = Expect<Equal<test_2_expected, test_2_actual>>;
+const three = createRoute("💨Dasher", "3");
+type t2_actual = typeof three; // =>
+type t2_expected = "3"; // =>
+type t2 = Expect<Equal<t2_actual, t2_expected>>;
+
+// @ts-expect-error
+createRoute("🌟Vixen", true);
+
+// @ts-expect-error
+createRoute("💃Dancer", [1]);
+
+// @ts-expect-error
+createRoute("☄️Comet", { 1: 1 });

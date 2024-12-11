@@ -1,2 +1,1 @@
-export type SantasFavoriteCookies = 'ginger-bread' | 'chocolate-chip';
- 
+export type Demand = number;

@@ -1,28 +1,42 @@
-import { Expect, Equal } from "type-testing";
-import { SantasList } from "~/05";
+import type { Expect, Equal } from "type-testing";
+import { createRoute } from "~/05";
 
-const bads = ["tommy", "trash"] as const;
-const goods = ["bash", "tru"] as const;
+const oneMill = createRoute("💨Dasher", 100_000_000);
+type t0_actual = typeof oneMill; // =>
+type t0_expected = 100_000_000; // =>
+type t0 = Expect<Equal<t0_actual, t0_expected>>;
 
-type test_0_actual = SantasList<typeof bads, typeof goods>;
-type test_0_expected = ["tommy", "trash", "bash", "tru"];
-type test_0 = Expect<Equal<test_0_actual, test_0_expected>>;
+const two = createRoute("💃Dancer", 2);
+type t1_actual = typeof two; // =>
+type t1_expected = 2; // =>
+type t1 = Expect<Equal<t1_actual, t1_expected>>;
 
-type test_1_actual = SantasList<[], []>;
-type test_1_expected = [];
-type test_1 = Expect<Equal<test_1_actual, test_1_expected>>;
+const three = createRoute("🦌Prancer", 2);
+type t2_actual = typeof three; // =>
+type t2_expected = 2; // =>
+type t2 = Expect<Equal<t2_actual, t2_expected>>;
 
-type test_2_actual = SantasList<[], ["trash"]>;
-type test_2_expected = ["trash"];
-type test_2 = Expect<Equal<test_2_actual, test_2_expected>>;
+const four = createRoute("🌟Vixen", "1");
+type t3_actual = typeof four; // =>
+type t3_expected = "1"; // =>
+type t3 = Expect<Equal<t3_actual, t3_expected>>;
 
-type test_3_actual = SantasList<["john"], ["ashley", "elliot", "ziltoid"]>;
-type test_3_expected = ["john", "ashley", "elliot", "ziltoid"];
-type test_3 = Expect<Equal<test_3_actual, test_3_expected>>;
+const five = createRoute("☄️Comet", true);
+type t4_actual = typeof five; // =>
+type t4_expected = true; // =>
+type t4 = Expect<Equal<t4_actual, t4_expected>>;
 
-type test_4_actual = SantasList<["1", 2, "3"], [false, boolean, "4", ["nested"]]>;
-type test_4_expected = ["1", 2, "3", false, boolean, "4", ["nested"]];
-type test_4 = Expect<Equal<test_4_actual, test_4_expected>>;
+const six = createRoute("❤️Cupid", [1]);
+type t5_actual = typeof six; // =>
+type t5_expected = number[]; // =>
+type t5 = Expect<Equal<t5_actual, t5_expected>>;
 
-// @ts-expect-error
-type error_0 = SantasList<null, undefined>;
+const seven = createRoute("🌩️Donner", { 1: 1 });
+type t6_actual = typeof seven; // =>
+type t6_expected = { 1: number }; // =>
+type t6 = Expect<Equal<t6_actual, t6_expected>>;
+
+const eight = createRoute("⚡Blitzen", Symbol("🔴 === evil"));
+type t7_actual = typeof eight; // =>
+type t7_expected = symbol; // =>
+type t7 = Expect<Equal<t7_actual, t7_expected>>;

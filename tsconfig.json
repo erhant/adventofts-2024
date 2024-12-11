@@ -11,15 +11,12 @@
     "strict": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "types": [
-      "bun-types" // add Bun global
-    ],
     "paths": {
       "~/*": ["./src/*"]
-    }
+    },
+    // typeRoots is required to solve declaration puzzles
+    "typeRoots": ["./node_modules/@types", "./*.d.ts"]
   }
 }

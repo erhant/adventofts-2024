@@ -1,1 +1,1 @@
-export type CookieSurveyInput<T> = keyof T
+export type Demand = 900_000;

@@ -1,4 +1,4 @@
-export type SantasList<
-  A extends readonly any[], 
-  B extends readonly any[]
-> = [...A, ...B];
+export const createRoute = <T>(author: string, route: T): T => {
+  console.log(`[createRoute] route created by ${author} at ${Date.now()}`);
+  return route
+}

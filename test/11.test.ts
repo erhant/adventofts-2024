@@ -1,64 +1,31 @@
-import { Expect, Equal } from "type-testing";
-import { SantaListProtector } from "~/11";
+import type { Expect, Equal } from "type-testing";
+import type { Excuse } from "~/11";
 
-type test_0_actual = SantaListProtector<{
-  hacksore: () => "naughty";
-  trash: string;
-  elliot: {
-    penny: boolean;
-    candace: {
-      address: {
-        street: {
-          name: "candy cane way";
-          num: number;
-        };
-        k: "hello";
-      };
-      children: [
-        "harry",
-        {
-          saying: ["hey"];
-        }
-      ];
-    };
-  };
-}>;
-type test_0_expected = {
-  readonly hacksore: () => "naughty";
-  readonly trash: string;
-  readonly elliot: {
-    readonly penny: boolean;
-    readonly candace: {
-      readonly address: {
-        readonly street: {
-          readonly name: "candy cane way";
-          readonly num: number;
-        };
-        readonly k: "hello";
-      };
-      readonly children: readonly [
-        "harry",
-        {
-          readonly saying: readonly ["hey"];
-        }
-      ];
-    };
-  };
+const existingExcuses = {
+  karaoke: ["Kendrick Lamar, Opeth"],
+  margarita: "Peppermint-Jalapeño Mojito",
 };
-type test_0 = Expect<Equal<test_0_expected, test_0_actual>>;
 
-type test_1_actual = SantaListProtector<{
-  theo: () => "naughty";
-  prime: string;
-  netflix: {
-    isChill: boolean;
-  };
-}>;
-type test_1_expected = {
-  readonly theo: () => "naughty";
-  readonly prime: string;
-  readonly netflix: {
-    readonly isChill: boolean;
-  };
-};
-type test_1 = Expect<Equal<test_1_expected, test_1_actual>>;
+const helpingTheReindeer = {
+  helping: "the reindeer",
+} as const;
+declare const Excuse0: Excuse<typeof helpingTheReindeer>;
+const excuse0 = new Excuse0({
+  ...existingExcuses,
+  ...helpingTheReindeer,
+});
+type t0_actual = typeof excuse0; // =>
+type t0_expected = "helping: the reindeer"; // =>
+type t0 = Expect<Equal<t0_actual, t0_expected>>;
+
+const eatingFudge = {
+  eating: "fudge",
+} as const;
+declare const Excuse1: Excuse<typeof eatingFudge>;
+const excuse1 = new Excuse1({
+  ...existingExcuses,
+  ...eatingFudge,
+});
+type t1_actual = typeof excuse1; // =>
+type t1_expected = "eating: fudge"; // =>
+type t1 = Expect<Equal<t1_actual, t1_expected>>;

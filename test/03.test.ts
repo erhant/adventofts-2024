@@ -1,26 +1,31 @@
-import { Expect, Equal } from "type-testing";
-import { GiftWrapper } from "~/03";
+import { survivalRatio } from "~/03";
 
-type test_SantaToTrash_actual = GiftWrapper<"Car", "Santa", "Trash">;
-type test_SantaToTrash_expected = {
-  present: "Car";
-  from: "Santa";
-  to: "Trash";
+export const reportForSanta = {
+  2009: survivalRatio(2009),
+  2010: survivalRatio(2010),
+  2011: survivalRatio(2011),
+  2012: survivalRatio(2012),
+  2013: survivalRatio(2013),
+  2014: survivalRatio(2014),
+  2015: survivalRatio(2015),
+  2016: survivalRatio(2016),
+  2017: survivalRatio(2017),
+  2018: survivalRatio(2018),
+  2019: survivalRatio(2019),
+  2020: survivalRatio(2020),
+  2021: survivalRatio(2021),
+  2022: survivalRatio(2022),
+  2023: survivalRatio(2023),
 };
-type test_SantaToTrash = Expect<Equal<test_SantaToTrash_actual, test_SantaToTrash_expected>>;
 
-type test_TrashToPrime_actual = GiftWrapper<"vscode", "Trash", "Prime">;
-type test_TrashToPrime_expected = {
-  present: "vscode";
-  from: "Trash";
-  to: "Prime";
-};
-type test_TrashToPrime = Expect<Equal<test_TrashToPrime_actual, test_TrashToPrime_expected>>;
+// @ts-expect-error
+survivalRatio("1");
 
-type test_DanToEvan_actual = GiftWrapper<"javascript", "Dan", "Evan">;
-type test_DanToEvan_expected = {
-  present: "javascript";
-  from: "Dan";
-  to: "Evan";
-};
-type test_DanToEvan = Expect<Equal<test_DanToEvan_actual, test_DanToEvan_expected>>;
+// @ts-expect-error
+survivalRatio(true);
+
+// @ts-expect-error
+survivalRatio([1]);
+
+// @ts-expect-error
+survivalRatio({ 1: 1 });

@@ -1,22 +1,32 @@
-import { Expect, Equal } from "type-testing";
-import { StreetSuffixTester } from "~/10";
+import type { Gift } from "~/10";
 
-type test_0_actual = StreetSuffixTester<"Candy Cane Way", "Way">;
-//   ^?
-type test_0_expected = true;
-type test_0 = Expect<Equal<test_0_expected, test_0_actual>>;
+const test = <F extends Gift>(flag: F) => flag;
 
-type test_1_actual = StreetSuffixTester<"Chocalate Drive", "Drive">;
-//   ^?
-type test_1_expected = true;
-type test_1 = Expect<Equal<test_1_expected, test_1_actual>>;
+test<Gift.Coal>(0);
+test<Gift.Train>(1);
+test<Gift.Bicycle>(2);
+test<Gift.SuccessorToTheNintendoSwitch>(4);
+test<Gift.TikTokPremium>(8);
+test<Gift.Vape>(16);
+test<Gift.Traditional>(3);
+test<Gift.OnTheMove>(26);
+test<Gift.OnTheCouch>(28);
 
-type test_2_actual = StreetSuffixTester<"Sugar Lane", "Drive">;
-//   ^?
-type test_2_expected = false;
-type test_2 = Expect<Equal<test_2_expected, test_2_actual>>;
-
-type test_3_actual = StreetSuffixTester<"Fifth Dimensional Nebulo 9", "invalid">;
-//   ^?
-type test_3_expected = false;
-type test_3 = Expect<Equal<test_3_expected, test_3_actual>>;
+// @ts-expect-error
+test<Gift.Coal>(10);
+// @ts-expect-error
+test<Gift.Train>(11);
+// @ts-expect-error
+test<Gift.Bicycle>(12);
+// @ts-expect-error
+test<Gift.SuccessorToTheNintendoSwitch>(14);
+// @ts-expect-error
+test<Gift.TikTokPremium>(18);
+// @ts-expect-error
+test<Gift.Vape>(116);
+// @ts-expect-error
+test<Gift.Traditional>(13);
+// @ts-expect-error
+test<Gift.OnTheMove>(126);
+// @ts-expect-error
+test<Gift.OnTheCouch>(124);
