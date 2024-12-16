@@ -1,8 +1,8 @@
 import type { Expect, Equal } from "type-testing";
 import type { Demand } from "~/02";
 
-type t0_actual = Demand; // =>
-type t0_expected = 900_000; // =>
+type t0_actual = Demand;
+type t0_expected = 900_000;
 type t0 = Expect<Equal<t0_actual, t0_expected>>;
 
 /*
